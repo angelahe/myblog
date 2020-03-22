@@ -48,6 +48,11 @@ npm install dotenv@6.2.0 --save
 npm install nodemon@1.18.9 --save-dev
 npm install @okta/oidc-middleware@1.0.2 express-session@1.15.6 --save
 
+npm install @okta/oidc-middleware@1.0.2 express-session@1.15.6 --save
+
+
+Try `npm install @types/okta__oidc-middleware` if it exists or add a new declaration (.d.ts) file containing `declare module '@okta/oidc-middleware';`
+
 #notes
 express@4.16.4 - used to start the express web app
 cors@2.8.5 - enable cross origin resource sharing

@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const { ExpressOIDC } = require('@okta/oidc-middleware');
 const app = express();
-const port = 3002;
+const port = 3000;
 
 // session support is required to use ExpressOIDC
 // creates session middleware with the options we passed it
