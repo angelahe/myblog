@@ -1,0 +1,11 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "play with express and react with okta nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
