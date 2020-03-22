@@ -1,0 +1,12 @@
+# React application
+node_modules/*
+
+# editor files
+.idea/*
+
+dist/
+build/
+*.egg-info/
+
+# Mac
+**/.DS_Store
