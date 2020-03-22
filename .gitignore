@@ -1,6 +1,9 @@
 # React application
 node_modules/*
 
+#secret file
+.env
+
 # editor files
 .idea/*
 
