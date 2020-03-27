@@ -5,6 +5,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const { ExpressOIDC } = require('@okta/oidc-middleware');
+const Sequelize = require('sequelize');
+const epilogue = require('epilogue'), ForbiddenError = epilogue.Errors.ForbiddenError;
 const app = express();
 const port = 3000;
 
@@ -39,14 +41,70 @@ const oidc = new ExpressOIDC({
 app.use(oidc.router);
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get ('/home', (req, res) => {
-  res.send ('<h1>Welcome!!</div><a href="/login">Login</a>');
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/home.html'));
+ });
+
+app.get('/admin', oidc.ensureAuthenticated(), (req, res) => {
+    res.sendFile(path.join(__dirname, './public/admin.html'));
+ });
+
+app.get ('/logout', (req, res) => {
+  req.logout ();
+  res.redirect ('/home');
 });
 
-app.get ('/admin', (req, res) => {
-  res.send ('Admin page');
+app.get ('/', (req, res) => {
+  res.redirect ('/home');
 });
 
+// set up the connection to the sqlite db
+const database = new Sequelize({
+    dialect: 'sqlite',
+    storage: './db.sqlite',
+    operatorsAliases: false,
+});
 
+// define the model which represents a table in the database
+const Post = database.define('posts', {
+    title: Sequelize.STRING,
+    content: Sequelize.TEXT,
+});
+
+// initialize Epilogue with our Express.js app and the database
+epilogue.initialize({ app, sequelize: database });
+
+// create the the REST resource, so now we have the 
+// create, list, read, update, and delete controllers with corresponding endpoints for our post.
+const PostResource = epilogue.resource({
+    model: Post,
+    endpoints: ['/posts', '/posts/:id'],
+});
+
+// authentication check to all CRUD routes to protect all endpoints
+PostResource.all.auth(function (req, res, context) {
+    return new Promise(function (resolve, reject) {
+        if (!req.isAuthenticated()) {
+            res.status(401).send({ message: "Unauthorized" });
+            resolve(context.stop);
+        } else {
+            resolve(context.continue);
+        }
+    })
+});
+
+database.sync().then(() => {
+    oidc.on('ready', () => {
+        app.listen(port, () => console.log(`My Blog App listening on port ${port}!`))
+    });
+});
+
+oidc.on('error', err => {
+    // An error occurred while setting up OIDC
+    console.log("oidc error: ", err);
+});
+
+// keep this?
 app.listen(port, () => console.log(`My Blog App listening on port ${port}!`))

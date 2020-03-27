@@ -50,6 +50,12 @@ npm install @okta/oidc-middleware@1.0.2 express-session@1.15.6 --save
 
 npm install @okta/oidc-middleware@1.0.2 express-session@1.15.6 --save
 
+npm install sqlite3@4.0.4 sequelize@4.42.0 epilogue@0.7.1 --save
+
+errors installing so try installing latest version?
++ epilogue@0.7.1
++ sequelize@5.21.5
++ sqlite3@4.1.1
 
 Try `npm install @types/okta__oidc-middleware` if it exists or add a new declaration (.d.ts) file containing `declare module '@okta/oidc-middleware';`
 
