@@ -1,5 +1,6 @@
 #myblog
-
+from scotch.io/tutorials
+https://scotch.io/tutorials/build-a-blog-using-expressjs-and-react-in-30-minutes?fbclid=IwAR1XoJrY9OLUL1-MPP5mqs1XmvMXsD2iDKvxmriUgmipalMFYLNKEsp6dz0
 #vim reminders
 https://vim.rtorr.com/
 move: eg 4 j go down 4 lines
@@ -53,8 +54,6 @@ npm install @okta/oidc-middleware@1.0.2 express-session@1.15.6 --save
 npm install sqlite3@4.0.4 sequelize@4.42.0 epilogue@0.7.1 --save
 
 errors installing so try installing latest version?
-+ epilogue@0.7.1
-+ sequelize@5.21.5
 + sqlite3@4.1.1
 
 Try `npm install @types/okta__oidc-middleware` if it exists or add a new declaration (.d.ts) file containing `declare module '@okta/oidc-middleware';`

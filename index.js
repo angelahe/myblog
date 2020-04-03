@@ -107,4 +107,4 @@ oidc.on('error', err => {
 });
 
 // keep this?
-app.listen(port, () => console.log(`My Blog App listening on port ${port}!`))
+// app.listen(port, () => console.log(`My Blog App listening on port ${port}!`))
