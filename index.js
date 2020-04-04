@@ -106,5 +106,5 @@ oidc.on('error', err => {
     console.log("oidc error: ", err);
 });
 
-// keep this?
+// deprecated with above
 // app.listen(port, () => console.log(`My Blog App listening on port ${port}!`))
