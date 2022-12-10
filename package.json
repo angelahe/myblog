@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "epilogue": "^0.7.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "sequelize": "^4.42.0",
     "sqlite3": "^4.1.1"
